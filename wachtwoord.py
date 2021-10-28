@@ -1,9 +1,17 @@
 import random
 import string
+import time
+
+print('time to passwrd!!!!!1!!111!')
+time.sleep(2)
+print('processing...')
+time.sleep(6)
+print('process complete!')
+time.sleep(1)
 cijfer = ['1','2','3','4','5','6','7','8','9']
 tekens = ['#','@','&','?','_','%','$']
 wachtwoord = list()
-print()
+
 print()
 for i in range(random.randint(2,6)):
     hoofdletterList = list(string.ascii_uppercase)
@@ -29,3 +37,4 @@ while x == True:
     else: print(*wachtwoord, sep="");x = False
 print()
 print()
+time.sleep(60)
