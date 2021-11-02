@@ -1,7 +1,10 @@
 import random
+aantalDobbelstenen = 5
 dobbelen = list()
-dobbelsteen = ['1','2','3','4','5','6']
-for i in range(0,5):
-    dobbelcijfer = random.randint(0,5)
-    dobbelen.append(dobbelsteen[dobbelcijfer])
+for i in range(0,aantalDobbelstenen):
+    dobbelcijfer = random.randint(1,6)
+    dobbelen.append(dobbelcijfer)
 print(*dobbelen, sep=", ")
+for i in range(len(dobbelen)):
+    dobbelsOpzij = input('wil je de dobbelsteen met nummer ' + str(dobbelen[i]) + ' apart leggen? [J/N] ')
+    if dobbelsOpzij.upper == 'J':
