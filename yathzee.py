@@ -43,4 +43,33 @@ print()
 time.sleep(1)
 print('dit zijn de cijfers die jij opzij gelegd hebt:')
 time.sleep(1)
+keuze = ['eenen','tweeën','drieën','vieren','vijfen','zessen','three of a kind','four of a kind','full house','small straight','large straight','yathzee','chance']
+
 print(*dobbelsOpzij, sep=", ")
+scoreOpslaan = input('je kan je score opslaan als: ' + str(keuze))
+if scoreOpslaan == 'eenen':
+    keuze.remove(0)
+elif scoreOpslaan == 'tweeën' or scoreOpslaan == 'tweeen':
+    keuze.remove(1)
+elif scoreOpslaan == 'drieen' or scoreOpslaan == 'drieen':
+    keuze.remove(2)
+elif scoreOpslaan == 'vieren':
+    keuze.remove(3)
+elif scoreOpslaan == 'vijfen':
+    keuze.remove(4)
+elif scoreOpslaan == 'zessen':
+    keuze.remove(5)
+elif scoreOpslaan == 'three of a kind':
+    keuze.remove(6)
+elif scoreOpslaan == 'four of a kind':
+    keuze.remove(7)
+elif scoreOpslaan == 'full house':
+    keuze.remove(8)
+elif scoreOpslaan == 'small straight':
+    keuze.remove(9)
+elif scoreOpslaan == 'large straight':
+    keuze.remove(10)
+elif scoreOpslaan == 'yathzee':
+    keuze.remove(11)
+elif scoreOpslaan == 'chance':
+    keuze.remove(12)
