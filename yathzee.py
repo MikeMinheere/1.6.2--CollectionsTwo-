@@ -39,7 +39,7 @@ def dobbelRollen(aantalDobbelstenen):
         dobbelcijfer = random.randint(1,6)
         dobbelen.append(dobbelcijfer)
     i = 0
-    for i in range(3):
+    for i in range(2):
         if len(dobbelen) > 0:
             print('dit zijn uw gerolde nummers:')
             time.sleep(1)
@@ -86,7 +86,8 @@ for i in range(13):
     print()
     x=True 
     while x == True:
-        scoreOpslaan=input('type het woord in van de lijst van hoe je hem wilt opslaan>> ')
+        dobbelsOpzij=['1','1','1','1','1']
+        scoreOpslaan=input('type het woord in van de lijst van hoe je hem wilt opslaan>> ').lower()
         if scoreOpslaan == 'eenen':
             plek = checklist(keuze, scoreOpslaan) 
             if plek != -1:
@@ -200,15 +201,14 @@ for i in range(13):
                 keuze.pop(plek)
                 sStraight = False
                 y = [0,0,0,0]
-                for x in range(1,7):
-                    y[0] = dobbelsOpzij.count(x)
-                    y[1] = dobbelsOpzij.count(x+1)
-                    y[2] = dobbelsOpzij.count(x+2)
-                    y[3] = dobbelsOpzij.count(x+3)
-                    if y[0] > 0 and y[1] > 0 and y[2] > 0 and y[3] > 0:
-                        sStraight = True
-                    if sStraight == True:
-                        Score += 30
+                y[0] = dobbelsOpzij.count(x)
+                y[1] = dobbelsOpzij.count(x+1)
+                y[2] = dobbelsOpzij.count(x+2)
+                y[3] = dobbelsOpzij.count(x+3)
+                if y[0] > 0 and y[1] > 0 and y[2] > 0 and y[3] > 0:
+                    sStraight = True
+                if sStraight == True:
+                    Score += 30
                 dobbelsOpzij.clear()
                 x=False
         elif scoreOpslaan == 'large straight':
@@ -217,16 +217,15 @@ for i in range(13):
                 keuze.pop(plek)
                 lStraight = False   
                 y = [0,0,0,0,0]
-                for x in range(1,7):
-                    y[0] = dobbelsOpzij.count(x)
-                    y[1] = dobbelsOpzij.count(x+1)
-                    y[2] = dobbelsOpzij.count(x+2)
-                    y[3] = dobbelsOpzij.count(x+3)
-                    y[4] = dobbelsOpzij.count(x+4)
-                    if y[0] > 0 and y[1] > 0 and y[2] > 0 and y[3] > 0 and y[4] > 0:
-                        lStraight = True
-                    if lStraight == True:
-                        Score += 40
+                y[0] = dobbelsOpzij.count(x)
+                y[1] = dobbelsOpzij.count(x+1)
+                y[2] = dobbelsOpzij.count(x+2)
+                y[3] = dobbelsOpzij.count(x+3)
+                y[4] = dobbelsOpzij.count(x+4)
+                if y[0] > 0 and y[1] > 0 and y[2] > 0 and y[3] > 0 and y[4] > 0:
+                    lStraight = True
+                if lStraight == True:
+                    Score += 40
                 dobbelsOpzij.clear()
                 x=False
         elif scoreOpslaan == 'yathzee':
@@ -236,7 +235,7 @@ for i in range(13):
                 dup = {x for x in dobbelsOpzij if dobbelsOpzij.count(x) == 5}
                 yathz = False
                 if len(dup) > 0:
-                    yatz = True
+                    yathz = True
                 if yathz == True:
                     Score += 50
                 dobbelsOpzij.clear()
