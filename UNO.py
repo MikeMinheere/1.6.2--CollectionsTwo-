@@ -12,7 +12,6 @@ neemVier='+4 kaart'
 kiesKleur='kies kaart'
 spelers=list()
 
-
 i = True
 while i==True:
     aantalSpelers=int(input('met hoeveel spelers wil je spelen? >> '))
@@ -52,6 +51,8 @@ for i in range(aantalSpelers):
     for x in range(7):
         spelers[i].append(dek[x])
         del dek[x]
-    print(spelers[i])
+    print(*spelers[i],sep= " | ")
     print()
 print(len(dek))
+eersteKaart=dek[0]
+print(eersteKaart)
