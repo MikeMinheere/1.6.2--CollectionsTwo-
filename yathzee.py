@@ -86,7 +86,6 @@ for i in range(13):
     print()
     x=True 
     while x == True:
-        dobbelsOpzij=['1','1','1','1','1']
         scoreOpslaan=input('type het woord in van de lijst van hoe je hem wilt opslaan>> ').lower()
         if scoreOpslaan == 'eenen':
             plek = checklist(keuze, scoreOpslaan) 
