@@ -52,11 +52,11 @@ for i in range(aantalSpelers):
     for x in range(7):
         spelers[i].append(dek[x])
         del dek[x]
-    print(*spelers[i],sep= " | ")
-    print()
-print(len(dek))
-eersteKaart=dek[0]
-print(eersteKaart)
+stapel=dek[0]
+print(stapel)
 print(dek)
-print(eersteKaart.split("."))
-print(spelers[1])
+print(stapel.split("."))
+for x in range(aantalSpelers):
+    for i in range(len(spelers[x])):
+        spelers[x][i].split(".")
+print(spelers)
