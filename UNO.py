@@ -11,6 +11,7 @@ volgorde='12'
 neemVier='4.1'
 kiesKleur='4.0'
 spelers=list()
+stapel=list()
 
 i = True
 while i==True:
@@ -39,6 +40,7 @@ for i in range(2):
         dek.append(kleuren[0]+"."+cijfer[x])
     for x in range(len(cijfer)):
         dek.append(kleuren[1]+"."+cijfer[x])
+
     for x in range(len(cijfer)):
         dek.append(kleuren[2]+"."+cijfer[x])
     for x in range(len(cijfer)):
@@ -53,10 +55,14 @@ for i in range(aantalSpelers):
         spelers[i].append(dek[x])
         del dek[x]
 stapel=dek[0]
+stapel=stapel.split(".")
 print(stapel)
-print(dek)
-print(stapel.split("."))
 for x in range(aantalSpelers):
-    for i in range(len(spelers[x])):
-        spelers[x][i].split(".")
+    for i in range(7):
+        spelers[x]+=(spelers[x][i].split("."))
 print(spelers)
+for i in range(7):
+    if stapel[0]== spelers[0][i]:
+        print('test')
+    elif stapel[1]== spelers[0][i]:
+        print('test')
