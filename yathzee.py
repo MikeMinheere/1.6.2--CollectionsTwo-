@@ -247,4 +247,4 @@ for i in range(13):
                 dobbelsOpzij.clear()
                 x=False
         else:print('sorry dat snap ik niet')
-    print(Score)
+print('uw eindscore: '+ str(Score))
