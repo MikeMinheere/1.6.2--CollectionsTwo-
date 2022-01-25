@@ -18,7 +18,7 @@ random.shuffle(naamlist2)
 
 for y in range(5):
     for i in range(len(naamlist)):
-        if naamlist[i] == naamlist[i]:
+        if naamlist[i] == naamlist2[i]:
             random.shuffle(naamlist)
 for i in range(len(naamlist)):
     print(naamlist[i]+' - '+naamlist2[i])
