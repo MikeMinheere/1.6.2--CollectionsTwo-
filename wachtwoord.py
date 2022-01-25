@@ -2,12 +2,7 @@ import random
 import string
 import time
 
-print('time to passwrd!!!!!1!!111!')
-time.sleep(2)
-print('processing...')
-time.sleep(6)
-print('process complete!')
-time.sleep(1)
+
 cijfer = ['1','2','3','4','5','6','7','8','9']
 tekens = ['#','@','&','?','_','%','$']
 wachtwoord = list()
