@@ -74,6 +74,7 @@ for i in range(13):
         while len(dobbelsOpzij)<5:
             dobbelcijfer = random.randint(1,6)
             dobbelsOpzij.append(dobbelcijfer)
+    dobbelsOpzij = [3,3,2,5,5]
     print()
     time.sleep(1)
     print('dit zijn de cijfers die jij opzij gelegd hebt:')
@@ -199,14 +200,14 @@ for i in range(13):
             if plek != -1:
                 keuze.pop(plek)
                 sStraight = False
-                y = [0,0,0,0]
+                y = [0,0,0,0,0] 
                 y[0] = dobbelsOpzij.count(x)
                 y[1] = dobbelsOpzij.count(x+1)
                 y[2] = dobbelsOpzij.count(x+2)
                 y[3] = dobbelsOpzij.count(x+3)
-                if y[0] > 0 and y[1] > 0 and y[2] > 0 and y[3] > 0:
+                if (y[0] >= 0 and y[1] > 0 and y[2] > 0 and y[3] > 0)or(y[2]==2):
                     sStraight = True
-                if sStraight == True:
+                if sStraight == True: 
                     Score += 30
                 dobbelsOpzij.clear()
                 x=False
@@ -221,7 +222,8 @@ for i in range(13):
                 y[2] = dobbelsOpzij.count(x+2)
                 y[3] = dobbelsOpzij.count(x+3)
                 y[4] = dobbelsOpzij.count(x+4)
-                if y[0] > 0 and y[1] > 0 and y[2] > 0 and y[3] > 0 and y[4] > 0:
+
+                if y[0] >= 0 and y[1] > 0 and y[2] > 0 and y[3] > 0 and y[4] > 0 :
                     lStraight = True
                 if lStraight == True:
                     Score += 40

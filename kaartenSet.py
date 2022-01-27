@@ -1,12 +1,6 @@
 import random
-def kaartenDek():
-    dek = list()
-    for i in range(0,54):
-        randomChoice = random.randint(0,54)
-        dek.append(soorten[randomChoice])
-    return dek
-jokers = ['joker,', 'Joker,']
 dek = list()
+jokers = ['joker,', 'Joker,']
 soorten = ['klaveren ', 'harten ', 'schoppen ', 'ruiten ']
 cijfer = ['1,','2,','3,','4,','5,','6,','7,','8,','9,','10,','boer,','vrouw,','heer,','aas,']
 for x in range (0,len(soorten)):

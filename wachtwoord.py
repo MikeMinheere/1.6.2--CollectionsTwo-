@@ -13,13 +13,11 @@ for i in range(random.randint(2,6)):
     randomHoofdletters = random.randint(0,23)
     wachtwoord.append(hoofdletterList[randomHoofdletters])
 for i in range(random.randint(4,7)):
-    nummerList = ['1','2','3','4','5','6','7','8','9']
     randomCijfers = random.randint(0,8)
-    wachtwoord.append(nummerList[randomCijfers])
+    wachtwoord.append(cijfer[randomCijfers])
 for i in range(random.randint(3,3)):
-    tekenList = ['#','@','&','?','_','%','$']
     randomTeken = random.randint(0,6)
-    wachtwoord.append(tekenList[randomTeken])
+    wachtwoord.append(tekens[randomTeken])
 while len(wachtwoord) != 24:
     kleineLetterList = list(string.ascii_lowercase)
     randomLetters = random.randint(0,23)
