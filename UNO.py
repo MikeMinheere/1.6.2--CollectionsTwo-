@@ -3,6 +3,8 @@ seed = random.randint(1,1000000)
 random.seed(seed)
 print(f"seed: {seed}")
 dek=list()
+
+#dit zijn de variabelen 
 kleuren=['groen','blauw','geel','rood']
 cijfer=['1','2','3','4','5','6','7','8','9']
 neemTwee=' +2 kaart'
@@ -13,7 +15,19 @@ kiesKleur='kies kaart'
 spelers=list()
 stapel=list()
 
+speler1=list()
+speler2=list()
+speler3=list()
+speler4=list()
+speler5=list()
+speler6=list()
+speler7=list()
+speler8=list()
+speler9=list()
+speler10=list()
+
 i = True
+# hier word gevraagd voor het aantal spelers
 while i==True:
     aantalSpelers=int(input('met hoeveel spelers wil je spelen? >> '))
     if aantalSpelers>10:
@@ -23,6 +37,7 @@ while i==True:
     elif aantalSpelers<=1:
         print('je hebt minimaal 2 spelers nodig om te spelen')
         i = False
+#hier worden de speciale kaarten aangemaakt 
 for x in range(2):
     for i in range(len(kleuren)):
         dek.append(kleuren[i]+"."+neemTwee)
@@ -39,6 +54,8 @@ for x in range(4):
     dek.append(kiesKleur)
 for x in range(4):
     dek.append(neemVier)
+
+#hier worden alle normale kaarten gemaakt 
 for i in range(2):
     for x in range(len(cijfer)):
         dek.append(kleuren[0]+"."+cijfer[x])
@@ -51,13 +68,3 @@ for i in range(2):
 for i in range(len(kleuren)):
     dek.append(kleuren[i]+'.0')
 random.shuffle(dek)
-for x in range(aantalSpelers):
-    spelers.append(list())
-for i in range(aantalSpelers):
-    for x in range(7):
-        spelers[i].append(dek[x])
-        del dek[x]
-print(dek)
-stapel=dek[0]
-stapel=stapel.split(".")
-
