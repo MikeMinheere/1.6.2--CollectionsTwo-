@@ -4,12 +4,16 @@ import webbrowser
 import collections
 from collections import Counter
 Score=0
-een=list()
-twee=list()
-drie=list()
-vier=list()
-vijf=list()
-zes=list()
+scoreDict = {
+    'een':0,
+    'twee':0,
+    'drie':0,
+    'vier':0,
+    'vijf':0,
+    'zes':0,
+    'bonus':0
+    
+}
 threeOfKind=list()
 fourOfKind=list()
 fullHouse=list()
@@ -63,9 +67,16 @@ def dobbelRollen(aantalDobbelstenen):
             deleteFromList.pop(len(deleteFromList)-1)
     dobbelen.clear()
 
+def scoreOptellen():
+    if sum(scoreDict.values())>=63:
+        scoreDict['bonus'] += 35
+    print('\n Uw eindscore:')
+    for key, value in scoreDict.items():
+        print(key, ' : ', value)
+
 dobbelsOpzij = list()
 deleteFromList = list()
-keuze = ['eenen','tweeën','drieën','vieren','vijfen','zessen','three of a kind','four of a kind','full house','small straight','large straight','yathzee','chance']
+keuze = ['1','2','3','4','5','6','three of a kind','four of a kind','full house','small straight','large straight','yathzee','chance']
 for i in range(13):
     dobbelRollen(aantalDobbelstenen)
     if len(dobbelen) > 0:
@@ -74,7 +85,6 @@ for i in range(13):
         while len(dobbelsOpzij)<5:
             dobbelcijfer = random.randint(1,6)
             dobbelsOpzij.append(dobbelcijfer)
-    dobbelsOpzij = [3,3,2,5,5]
     print()
     time.sleep(1)
     print('dit zijn de cijfers die jij opzij gelegd hebt:')
@@ -88,79 +98,36 @@ for i in range(13):
     x=True 
     while x == True:
         scoreOpslaan=input('type het woord in van de lijst van hoe je hem wilt opslaan>> ').lower()
-        if scoreOpslaan == 'eenen':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                a=0
-                for i in range(len(dobbelsOpzij)):
-                    if dobbelsOpzij[a] == 1:
-                        een.append(dobbelsOpzij[a])
-                    a+=1
-                Score += len(een)*1
-                dobbelsOpzij.clear()
-                x=False
-        #dit voegt alle cijfers toe aan een aparte list om de score mee te berekenen
-        elif scoreOpslaan == 'tweeën':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                a=0
-                for i in range(len(dobbelsOpzij)):
-                    if dobbelsOpzij[a] == 2:
-                        twee.append(dobbelsOpzij[a])
-                    a+=1
-                Score += len(twee)*2
-                dobbelsOpzij.clear()
-                x=False
-        elif scoreOpslaan == 'drieën':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                a=0
-                for i in range(len(dobbelsOpzij)):
-                    if dobbelsOpzij[a] == 3:
-                        drie.append(dobbelsOpzij[a])
-                    a+=1
-                Score += len(drie)*3
-                dobbelsOpzij.clear()
-                x=False
-        elif scoreOpslaan == 'vieren':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                a=0
-                for i in range(len(dobbelsOpzij)):
-                    if dobbelsOpzij[a] == 4:
-                        vier.append(dobbelsOpzij[a])
-                    a+=1
-                Score += len(vier)*4
-                dobbelsOpzij.clear()
-                x=False
-        elif scoreOpslaan == 'vijfen':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                a=0
-                for i in range(len(dobbelsOpzij)):
-                    if dobbelsOpzij[a] == 5:
-                        vijf.append(dobbelsOpzij[a])
-                    a+=1
-                Score += len(vijf)*5
-                dobbelsOpzij.clear()
-                x=False
-        elif scoreOpslaan == 'zessen':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                a=0
-                for i in range(len(dobbelsOpzij)):
-                    if dobbelsOpzij[a] == 6:
-                        zes.append(dobbelsOpzij[a])
-                    a+=1
-                Score += len(zes)*6
-                dobbelsOpzij.clear()
-                x=False
+        if scoreOpslaan == '1':
+            for i in range(len(dobbelsOpzij)):
+                if int(dobbelsOpzij[i])==1:
+                    scoreDict['een']+=1
+                    x=False
+        elif scoreOpslaan == '2':
+            for i in range(len(dobbelsOpzij)):
+                if int(dobbelsOpzij[i])==2:
+                    scoreDict['twee']+=2
+                    x=False
+        elif scoreOpslaan == '3':
+            for i in range(len(dobbelsOpzij)):
+                if int(dobbelsOpzij[i])==3:
+                    scoreDict['drie']+=3
+                    x=False
+        elif scoreOpslaan == '4':
+            for i in range(len(dobbelsOpzij)):
+                if int(dobbelsOpzij[i])==4:
+                    scoreDict['vier']+=4
+                    x=False
+        elif scoreOpslaan == '5':
+            for i in range(len(dobbelsOpzij)):
+                if int(dobbelsOpzij[i])==5:
+                    scoreDict['vijf']+=5
+                    x=False
+        elif scoreOpslaan == '6':
+            for i in range(len(dobbelsOpzij)):
+                if int(dobbelsOpzij[i])==6:
+                    scoreDict['zes']+=6
+                    x=False
         elif scoreOpslaan == 'three of a kind':
             plek = checklist(keuze, scoreOpslaan) 
             if plek != -1:
@@ -249,4 +216,4 @@ for i in range(13):
                 dobbelsOpzij.clear()
                 x=False
         else:print('sorry dat snap ik niet')
-print('uw eindscore: '+ str(Score))
+        dobbelsOpzij.clear()
