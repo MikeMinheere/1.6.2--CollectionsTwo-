@@ -11,8 +11,7 @@ scoreDict = {
     'vier':0,
     'vijf':0,
     'zes':0,
-    'bonus':0
-    
+    'bonus':0    
 }
 threeOfKind=list()
 fourOfKind=list()
