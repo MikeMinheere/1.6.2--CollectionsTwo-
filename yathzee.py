@@ -5,20 +5,23 @@ import collections
 from collections import Counter
 Score=0
 scoreDict = {
-    'een':0,
-    'twee':0,
-    'drie':0,
-    'vier':0,
-    'vijf':0,
-    'zes':0,
+    '1':0,
+    '2':0,
+    '3':0,
+    '4':0,
+    '5':0,
+    '6':0,
     'bonus':0    
 }
-threeOfKind=list()
-fourOfKind=list()
-fullHouse=list()
-lStraight=list()
-yathzee=list()
-chance=list()
+cijfer = [1,2,3,4,5,6]
+alGehadDict = {
+    '1':0,
+    '2':0,
+    '3':0,
+    '4':0,
+    '5':0,
+    '6':0
+}
 
 def checklist(keuze, scoreOpslaan):
     nummer = -1
@@ -32,7 +35,7 @@ help = input('wilt u de spelregels weten? (J/N)').upper()
 if help == 'J':
     webbrowser.open("https://www.dobbelstenenshop.nl/spelregels-yahtzee/")
 else:()
-time.sleep(2)
+time.sleep(1)
 aantalDobbelstenen = 5
 dobbelen = list()
 restDobbels=list()
@@ -75,8 +78,9 @@ def scoreOptellen():
 
 dobbelsOpzij = list()
 deleteFromList = list()
-keuze = ['1','2','3','4','5','6','three of a kind','four of a kind','full house','small straight','large straight','yathzee','chance']
-for i in range(13):
+keuze = ['1 ','2 ','3 ','4 ','5 ','6']
+for i in range(2):
+    dobbelsOpzij.clear()
     dobbelRollen(aantalDobbelstenen)
     if len(dobbelen) > 0:
         dobbelsOpzij.append(dobbelen)   
@@ -96,123 +100,12 @@ for i in range(13):
     print()
     x=True 
     while x == True:
-        scoreOpslaan=input('type het woord in van de lijst van hoe je hem wilt opslaan>> ').lower()
-        if scoreOpslaan == '1':
+        scoreOpslaan=int(input('type het cijfer van de lijst van hoe je hem wilt opslaan>> '))
+        if alGehadDict[str(scoreOpslaan)]<1:
+            alGehadDict[str(scoreOpslaan)]+=1
             for i in range(len(dobbelsOpzij)):
-                if int(dobbelsOpzij[i])==1:
-                    scoreDict['een']+=1
-                    x=False
-        elif scoreOpslaan == '2':
-            for i in range(len(dobbelsOpzij)):
-                if int(dobbelsOpzij[i])==2:
-                    scoreDict['twee']+=2
-                    x=False
-        elif scoreOpslaan == '3':
-            for i in range(len(dobbelsOpzij)):
-                if int(dobbelsOpzij[i])==3:
-                    scoreDict['drie']+=3
-                    x=False
-        elif scoreOpslaan == '4':
-            for i in range(len(dobbelsOpzij)):
-                if int(dobbelsOpzij[i])==4:
-                    scoreDict['vier']+=4
-                    x=False
-        elif scoreOpslaan == '5':
-            for i in range(len(dobbelsOpzij)):
-                if int(dobbelsOpzij[i])==5:
-                    scoreDict['vijf']+=5
-                    x=False
-        elif scoreOpslaan == '6':
-            for i in range(len(dobbelsOpzij)):
-                if int(dobbelsOpzij[i])==6:
-                    scoreDict['zes']+=6
-                    x=False
-        elif scoreOpslaan == 'three of a kind':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                dup = {x for x in dobbelsOpzij if dobbelsOpzij.count(x) == 3}
-                if len(dup) > 0:
-                    threeOfKind.append(dobbelsOpzij)
-                    Score += sum(dobbelsOpzij)
-                dobbelsOpzij.clear()
+                if int(dobbelsOpzij[i])==int(scoreOpslaan):
+                    scoreDict[str(cijfer[scoreOpslaan-1])]+=cijfer[scoreOpslaan-1]
                 x=False
-        elif scoreOpslaan == 'four of a kind':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                dup = {x for x in dobbelsOpzij if dobbelsOpzij.count(x) == 4}
-                if len(dup) > 0:
-                    fourOfKind.append(dobbelsOpzij)
-                    Score += sum(dobbelsOpzij)
-                dobbelsOpzij.clear()
-                x=False
-        elif scoreOpslaan == 'full house':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                full = False
-                dup = {x for x in dobbelsOpzij if dobbelsOpzij.count(x) == 3}
-                dup2 = {x for x in dobbelsOpzij if dobbelsOpzij.count(x) == 2}
-                if len(dup) > 0 and len(dup2) > 0:
-                    fullHouse.append(dobbelsOpzij)
-                    full = True
-                if full == True:
-                    Score += 25
-                dobbelsOpzij.clear()
-                x=False
-        elif scoreOpslaan == 'small straight':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                sStraight = False
-                y = [0,0,0,0,0] 
-                y[0] = dobbelsOpzij.count(x)
-                y[1] = dobbelsOpzij.count(x+1)
-                y[2] = dobbelsOpzij.count(x+2)
-                y[3] = dobbelsOpzij.count(x+3)
-                if (y[0] >= 0 and y[1] > 0 and y[2] > 0 and y[3] > 0)or(y[2]==2):
-                    sStraight = True
-                if sStraight == True: 
-                    Score += 30
-                dobbelsOpzij.clear()
-                x=False
-        elif scoreOpslaan == 'large straight':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                lStraight = False   
-                y = [0,0,0,0,0]
-                y[0] = dobbelsOpzij.count(x)
-                y[1] = dobbelsOpzij.count(x+1)
-                y[2] = dobbelsOpzij.count(x+2)
-                y[3] = dobbelsOpzij.count(x+3)
-                y[4] = dobbelsOpzij.count(x+4)
-
-                if y[0] >= 0 and y[1] > 0 and y[2] > 0 and y[3] > 0 and y[4] > 0 :
-                    lStraight = True
-                if lStraight == True:
-                    Score += 40
-                dobbelsOpzij.clear()
-                x=False
-        elif scoreOpslaan == 'yathzee':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                dup = {x for x in dobbelsOpzij if dobbelsOpzij.count(x) == 5}
-                yathz = False
-                if len(dup) > 0:
-                    yathz = True
-                if yathz == True:
-                    Score += 50
-                dobbelsOpzij.clear()
-                x=False
-        elif scoreOpslaan == 'chance':
-            plek = checklist(keuze, scoreOpslaan) 
-            if plek != -1:
-                keuze.pop(plek)
-                Score += sum(dobbelsOpzij)
-                dobbelsOpzij.clear()
-                x=False
-        else:print('sorry dat snap ik niet')
-        dobbelsOpzij.clear()
+        else:print('cijfer al gehad')
+scoreOptellen() 
