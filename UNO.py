@@ -8,17 +8,18 @@ dek = list()
 kleuren = ['groen', 'blauw', 'geel', 'rood']
 cijfer = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 neemTwee = '+2'
-beurtOverslaan = 'beurt overslaan'
+beurtOverslaan = 'beurt-overslaan'
 volgorde = 'keer-om'
 neemVier = '+4'
-kiesKleur = 'kies'
+kiesKleur = 'kies-kleur'
 spelerDict = {
 }
+pestKaarten = [neemTwee, beurtOverslaan, volgorde, neemVier, kiesKleur, volgorde]
 stapel = list()
 i = True
 # hier word gevraagd voor het aantal spelers
 while i == True:
-    aantalSpelers = int(input('met hoeveel spelers wil je spelen? >> '))
+    aantalSpelers = int(input('met hoeveel spelers wil je spelen? >>> '))
     if aantalSpelers > 10:
         print('je kan maximaal met 10 spelers spelen')
     elif aantalSpelers > 1:
@@ -61,23 +62,37 @@ def dekDelen():
 
 
 def rondeSpelen():
+    i = True
     space = " "
     topCard = dek[0].split(".")
-    input(f"de top kaart is {space.join(topCard)}")
+    while i == True:
+        if any(topCard[1] in s for s in pestKaarten):
+            random.shuffle(dek)
+            topCard = dek[0].split(".")
+        else:
+            i = False
     stapel = []
-    for i in range(aantalSpelers):
-        kaart = []
-        print(f"Speler {i+1} is aan de beurt, kies je Kaart:")
-        for x in range(len(spelerDict[f"speler{i}"])):
-            kaart = spelerDict[f"speler{i}"][0].split(".")
-            if kaart[0] == topCard[0] or kaart[1] == topCard[1]:
+    x = True
+    while x == True:
+        for i in range(aantalSpelers):
+            input(f"de top kaart is {space.join(topCard)} ")
+            print(f"Speler {i+1} is aan de beurt, kies je Kaart:")
+            print(", ".join(spelerDict[f"speler{i}"]))
+            kaart = input(">>> ").split(".")
+            if kaart[0] == topCard[0] or kaart[1] == topCard[1] or kaart[0] == "any":
+                spelerDict[f"speler{i}"]
                 stapel.append(".".join(topCard))
-                topCard = kaart
-                print(topCard)
-                print(kaart)
-                kaart.clear()
+                if kaart[0] == "any":
+                    kies = input("kies een kleur: groen, rood, geel, blauw. >>> ")
+                    topCard = [kies, kaart[1]]
+                else:
+                    topCard = kaart
+                del kaart
+
             else:
                 print("kan niet")
+            if len(spelerDict[f"speler{i}"]):
+                x = False
 
 
 dekMaken()
