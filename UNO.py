@@ -1,10 +1,12 @@
 import random
 seed = random.randint(1, 1000000)
+seed = 538438
 random.seed(seed)
 print(f"seed: {seed}")
 dek = list()
 
 # dit zijn de variabelen
+addCards = 0
 kleuren = ['groen', 'blauw', 'geel', 'rood']
 cijfer = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 neemTwee = '+2'
@@ -63,8 +65,8 @@ def dekDelen():
 
 
 def rondeSpelen():
+    global addCards
     alOvergeslagen = False
-    addCards = 0
     # blokje code om het spel te starten, hierin leg ik de eerste kaart neer, en kijk ik of die met een pestkaart begint
     i = True
     space = " "
@@ -86,8 +88,9 @@ def rondeSpelen():
                 alOvergeslagen = True
                 continue
             if addCards > 0:
-                if "+4" in spelerDict[f"speler{i}"] or "+2" in spelerDict[f"speler{i}"]:
-                    pass
+                for x in range(len(spelerDict[f"speler{i}"])):
+                    if "any.+4" in spelerDict[f"speler{i}"][x] or ".+2" in spelerDict[f"speler{i}"][x]:
+                        pass
 
                 else:
                     for x in range(addCards):
