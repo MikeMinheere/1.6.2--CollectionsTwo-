@@ -69,30 +69,41 @@ def rondeSpelen():
         if any(topCard[1] in s for s in pestKaarten):
             random.shuffle(dek)
             topCard = dek[0].split(".")
+            del dek[0]
         else:
             i = False
     stapel = []
-    x = True
-    while x == True:
+    y = True
+    while y == True:
+        #de loop met aantalspelers is voor de beurt van iedere spelen, dus 1 loop, is 1 speler zijn beurt.
         for i in range(aantalSpelers):
             input(f"de top kaart is {space.join(topCard)} ")
-            print(f"Speler {i+1} is aan de beurt, kies je Kaart:")
-            print(", ".join(spelerDict[f"speler{i}"]))
-            kaart = input(">>> ").split(".")
-            if kaart[0] == topCard[0] or kaart[1] == topCard[1] or kaart[0] == "any":
-                spelerDict[f"speler{i}"]
-                stapel.append(".".join(topCard))
-                if kaart[0] == "any":
-                    kies = input("kies een kleur: groen, rood, geel, blauw. >>> ")
-                    topCard = [kies, kaart[1]]
-                else:
-                    topCard = kaart
-                del kaart
+            print(f"Speler {i+1} is aan de beurt, kies je Kaart, of pak een nieuwe:")
+            print(", ".join(spelerDict[f"speler{i}"])+ ", pakken")
+            kaartSelectie = input(">>> ")
+            if kaartSelectie == "pakken".lower():
+                spelerDict[f"speler{i}"].append(dek[0])
+                del dek[0]
+            else: 
+                kaart = kaartSelectie.split(".")
+                if kaart[0] == topCard[0] or kaart[1] == topCard[1] or kaart[0] == "any":
+                    spelerDict[f"speler{i}"]
+                    stapel.append(".".join(topCard))
+                    for x in range(len(spelerDict[f"speler{i}"])):
+                        if ".".join(kaart) == spelerDict[f"speler{i}"][x]:
+                            del spelerDict[f"speler{i}"][x]
+                            break
+                    if kaart[0] == "any":
+                        kies = input("kies een kleur: groen, rood, geel, blauw. >>> ")
+                        topCard = [kies, kaart[1]]
+                    else:
+                        topCard = kaart
+                    del kaart
 
-            else:
-                print("kan niet")
-            if len(spelerDict[f"speler{i}"]):
-                x = False
+                else:
+                    print("kan niet")
+                if len(spelerDict[f"speler{i}"]) <= 0:
+                    y = False
 
 
 dekMaken()
